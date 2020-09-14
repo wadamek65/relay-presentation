@@ -1,0 +1,51 @@
+interface Node {
+    id: ID!
+}
+
+type Person implements Node {
+    id: ID!
+    name: String!
+    email: String!
+}
+
+type Message implements Node {
+    id: ID!
+    text: String!
+}
+
+type Chat implements Node {
+    id: ID!
+    title: String!
+    author: Person!
+    messages: [Message!]!
+    participants: [Person!]!
+}
+
+type ChatsPayload {
+    result: [Chat!]!
+}
+
+input EditPersonInput {
+    id: ID!
+    name: String!
+}
+
+type EditPersonPayload {
+    result: Person!
+}
+
+type Viewer {
+    chats: ChatsPayload!
+    me: Person!
+}
+
+type Query {
+    chats: ChatsPayload!
+    chat(id: ID!): Chat!
+    me: Person!
+    viewer: Viewer!
+}
+
+type Mutation {
+    editPerson(input: EditPersonInput!): EditPersonPayload!
+}
