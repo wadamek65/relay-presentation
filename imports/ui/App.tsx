@@ -5,7 +5,7 @@ import UrqlApp from './urql';
 
 export const App = () => (
     <div>
-        <ApolloApp />
+        {/*<ApolloApp />*/}
         <RelayApp />
         <UrqlApp />
     </div>

@@ -7,8 +7,8 @@ const App = () => (
   <Provider>
     <div style={{ border: '1px solid black'}}>
       relay
-      <EditPerson/>
       <ChatsExample />
+      <EditPerson/>
     </div>
   </Provider>
 )

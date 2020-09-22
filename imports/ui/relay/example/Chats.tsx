@@ -33,12 +33,12 @@ export const Chats = () => {
   if (props) {
     return (
       <div>
-        <Navbar me={props.viewer.me}/>
+        {/*<Navbar me={props.viewer.me}/>*/}
         {props.viewer.chats.result.map(chat => (
           <div key={chat.id}>
             {chat.id}
             <Author author={chat.author}/>
-            <Stats author={chat.author}/>
+            {/*<Stats author={chat.author}/>*/}
           </div>
         ))}
       </div>

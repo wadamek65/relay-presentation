@@ -13,6 +13,10 @@ export const Author = ({ author }: { author: Author_author$key }) => {
 
   console.log('relay: author render');
 
+  React.useEffect(() => {
+    console.log('relay: effect fired');
+  }, [authorData]);
+
   return (
     <div>
       <h1>{authorData.name}</h1>

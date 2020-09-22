@@ -25,7 +25,7 @@ export const EditPerson = () => {
           }
         },
         onCompleted: response => {
-          console.log(response);
+          // console.log(response);
         },
         onError: error => {
           console.log(error);
