@@ -2,50 +2,63 @@ interface Node {
     id: ID!
 }
 
-type Person implements Node {
-    id: ID!
-    name: String!
-    email: String!
+type PageInfo {
+    startCursor: String
+    endCursor: String
+    hasPreviousPage: Boolean!
+    hasNextPage: Boolean!
 }
 
 type Message implements Node {
     id: ID!
+    author: String!
     text: String!
+    sentAt: String!
+}
+
+type MessageEdge {
+    cursor: String!
+    node: Message!
+}
+
+type MessageConnection {
+    pageInfo: PageInfo!
+    edges: [MessageEdge!]!
 }
 
 type Chat implements Node {
     id: ID!
     title: String!
-    author: Person!
-    messages: [Message!]!
-    participants: [Person!]!
+    messages(first: Int, last: Int, after: String, before: String): MessageConnection!
 }
 
-type ChatsPayload {
-    result: [Chat!]!
+input SendMessageInput {
+    chatId: ID!
+    author: String!
+    text: String!
 }
 
-input EditPersonInput {
-    id: ID!
-    name: String!
+type SendMessagePayload {
+    edge: MessageEdge!
 }
 
-type EditPersonPayload {
-    result: Person!
+type ChatUpdatesPayload {
+    newMessage: Message!
 }
 
 type Viewer {
-    chats: ChatsPayload!
-    me: Person!
+    chat(id: ID!): Chat!
 }
 
 type Query {
-    chats: ChatsPayload!
     chat(id: ID!): Chat!
-    me: Person!
     viewer: Viewer!
 }
 
 type Mutation {
-    editPerson(input: EditPersonInput!): EditPersonPayload!
+    sendMessage(input: SendMessageInput!): SendMessagePayload!
+}
+
+type Subscription {
+    chatUpdates(id: ID!): ChatUpdatesPayload
 }

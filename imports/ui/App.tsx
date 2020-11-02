@@ -1,12 +1,11 @@
+import 'antd/dist/antd.css';
 import React from 'react';
-import ApolloApp from './apollo';
-import RelayApp from './relay';
-import UrqlApp from './urql';
+
+import { Provider } from './Provider';
+import { Chat } from '/imports/ui/Chat';
 
 export const App = () => (
-    <div>
-        {/*<ApolloApp />*/}
-        <RelayApp />
-        <UrqlApp />
-    </div>
+  <Provider>
+    <Chat />
+  </Provider>
 );

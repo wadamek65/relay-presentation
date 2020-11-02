@@ -1,0 +1,5 @@
+- Changing author name
+- "X is typing"
+- Mark read/unread
+- Edit messages
+- Messages pagination
