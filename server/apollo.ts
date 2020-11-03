@@ -43,7 +43,7 @@ const chatMessages = [
 const chatObject = {
   id: 'Chat:1',
   title: 'Workshop chat',
-  messages: ({ before, after, last, first }) => {
+  messages: ({before, after, last, first}) => {
     let messagesCopy = [...chatMessages];
     let hasNextPage = false;
     let hasPreviousPage = false;
@@ -92,7 +92,7 @@ const chatObject = {
 
 const chat = () => chatObject;
 
-const sendMessage = async (parent, { input: { author, text } }) => {
+const sendMessage = async (parent, {input: {author, text}}) => {
   const newMessage = {
     id: Math.random().toString(36).substr(2, 5),
     author,
@@ -100,7 +100,7 @@ const sendMessage = async (parent, { input: { author, text } }) => {
   };
   chatMessages.push(newMessage);
 
-  await pubSub.publish(CHAT_UPDATES, { newMessage });
+  await pubSub.publish(CHAT_UPDATES, {newMessage});
 
   return {
     edge: {
@@ -122,9 +122,7 @@ const resolvers = {
   },
   Subscription: {
     chatUpdates: {
-      subscribe: () => {
-        return pubSub.asyncIterator(CHAT_UPDATES);
-      },
+      subscribe: () => pubSub.asyncIterator(CHAT_UPDATES)
     },
   },
 };
