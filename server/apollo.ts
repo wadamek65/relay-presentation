@@ -96,7 +96,8 @@ const sendMessage = async (parent, {input: {author, text}}) => {
   const newMessage = {
     id: Math.random().toString(36).substr(2, 5),
     author,
-    text
+    text,
+    sentAt: new Date().toLocaleString()
   };
   chatMessages.push(newMessage);
 
@@ -113,9 +114,9 @@ const sendMessage = async (parent, {input: {author, text}}) => {
 const resolvers = {
   Query: {
     chat,
-    viewer: {
-      chat
-    }
+    viewer: () => ({
+      chat: chatObject
+    })
   },
   Mutation: {
     sendMessage
